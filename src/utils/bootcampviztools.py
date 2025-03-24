@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-def pinta_distribucion_categoricas(df, columnas_categoricas, relativa=False, mostrar_valores=False):
+def plot_distribution_categoricas(df, columnas_categoricas, relativa=False, mostrar_valores=False):
     num_columnas = len(columnas_categoricas)
     num_filas = (num_columnas // 2) + (num_columnas % 2)
 
@@ -40,7 +40,7 @@ def pinta_distribucion_categoricas(df, columnas_categoricas, relativa=False, mos
     plt.show()
 
 
-def plot_categorical_relationship_fin(df, cat_col1, cat_col2, relative_freq=False, show_values=False, size_group = 5):
+def plot_categorical_relationship(df, cat_col1, cat_col2, relative_freq=False, show_values=False, size_group = 5):
     # Prepara los datos
     count_data = df.groupby([cat_col1, cat_col2]).size().reset_index(name='count')
     total_counts = df[cat_col1].value_counts()
@@ -162,7 +162,7 @@ def plot_categorical_numerical_relationship(df, categorical_col, numerical_col, 
         plt.show()
 
 
-def plot_combined_graphs(df, columns, whisker_width=1.5, bins = None):
+def plot_distribution_combined_graphs(df, columns, whisker_width=1.5, bins = None):
     num_cols = len(columns)
     if num_cols:
         
@@ -186,7 +186,7 @@ def plot_combined_graphs(df, columns, whisker_width=1.5, bins = None):
                     axes[1].set_title(f'Boxplot de {column}')
 
         plt.tight_layout()
-        plt.show()
+        plt.show();
 
 def plot_grouped_boxplots(df, cat_col, num_col):
     unique_cats = df[cat_col].unique()
@@ -225,7 +225,7 @@ def plot_grouped_histograms(df, cat_col, num_col, group_size):
 
 
 
-def grafico_dispersion_con_correlacion(df, columna_x, columna_y, tamano_puntos=50, mostrar_correlacion=False):
+def plot_scatter_correlation(df, columna_x, columna_y, tamano_puntos=50, mostrar_correlacion=False):
     """
     Crea un diagrama de dispersión entre dos columnas y opcionalmente muestra la correlación.
 
