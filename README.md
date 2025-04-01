@@ -66,6 +66,8 @@ pip install -r requirements.txt
 ```bash
 git clone https://github.com/tu_usuario/tu_repositorio.git
 cd tu_repositorio
+git lfs install
+git lfs pull
 ```
 
 2. Ejecutar el Jupyter Notebook para el entrenamiento y la predicción:
