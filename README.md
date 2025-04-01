@@ -49,7 +49,7 @@ Utiliza Machine Learning para predecir el valor. Se ha implementado un modelo de
 |   |-- predict.ipynb             # Script para hacer predicciones
 |-- src/models/                   # Modelos entrenados guardados
 |-- src/utils/                    # Contiene archivos de utilidad (funciones de visualización, etc.)
-|-- requirements.txt              # Dependencias
+|-- requirements.txt              # Librerías necesarias para el proyecto
 |-- README.md                     # Documentación
 ```
 
