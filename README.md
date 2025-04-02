@@ -3,7 +3,6 @@
 ## Descripción
 Debido a los cambios actuales en el mercado automovilístico en España, este proyecto trata de establecer el precio de coches de segunda mano según sus características y estado de desgaste, proporcionando una guía sobre la que estimar el coste.
 
-
 Los datos han sido obtenidos de DataMarket, contando con los anuncios de las principales páginas de venta de coches de segunda mano. Los datos son principalmente del año 2023, e incluyen la siguiente información:
 - color: Color del vehículo.
 - currency: Moneda en la que está definido el precio del vehículo.
@@ -35,22 +34,20 @@ Los datos han sido obtenidos de DataMarket, contando con los anuncios de las pri
 - version: Versión del vehículo.
 - year: Año de fabricación del vehículo.
 
-
-Utiliza Machine Learning para predecir el valor. Se ha implementado un modelo de regresión basado en **RandomForestRegressor**, ya que proporcionó los mejores resultados en pruebas, aunque se sigue intentando mejorar el resultado de sus predicciones.
+Pueden acceder a parte de los datos solicitándolos en la web de [DataMarket](https://datamarket.es).
 
 ## Estructura del Proyecto
 ```
 /
-|-- src/data_sample/              # Contiene los datos crudos y procesados
-|-- src/notebooks/                # Jupyter Notebooks con el análisis y entrenamientos de diferentes modelos
+|-- src/data_sample/                 # Contiene los datos crudos y procesados
+|-- src/notebooks/                   # Jupyter Notebooks con el análisis y entrenamientos de diferentes modelos
 |-- src/results_notebooks/        
-|   |-- results_notebook.ipynb    # Script que explica el proceso de preparado de las variables y entrena el modelo definitivo
-|   |-- train.ipynb               # Script para hacer predicciones
-|   |-- predict.ipynb             # Script para hacer predicciones
-|-- src/models/                   # Modelos entrenados guardados
-|-- src/utils/                    # Contiene archivos de utilidad (funciones de visualización, etc.)
-|-- requirements.txt              # Librerías necesarias para el proyecto
-|-- README.md                     # Documentación
+|   |-- results_notebook_ES.ipynb    # Script que explica el proceso de preparado de las variables y entrena el modelo definitivo (hay una versión en inglés)
+|-- src/models/                      # Modelos entrenados guardados
+|-- src/utils/                       # Contiene archivos de utilidad (funciones de visualización, etc.)
+|-- src/img/                         # Contiene imágenes, presentaciones, etc.
+|-- requirements.txt                 # Librerías necesarias para el proyecto
+|-- README.md                        # Documentación
 ```
 
 ## Instalación
@@ -70,44 +67,96 @@ git lfs install
 git lfs pull
 ```
 
-2. Ejecutar el Jupyter Notebook para el entrenamiento y la predicción:
+2. Ejecutar el Jupyter Notebook para el entrenamiento:
 
-```bash
-jupyter notebook
-```
-
-Abrir `notebooks/model_training.ipynb` y seguir las instrucciones.
+Abrir `results_notebook/results_notebook.ipynb` y ejecutar para ver el proceso de modelado.
 
 
 ## Modelo
-Se ha utilizado un **RandomForestRegressor** de `scikit-learn`.
+Se ha implementado un modelo de regresión **RandomForestRegressor** de `scikit-learn`, ya que proporcionó los mejores resultados en pruebas, aunque se sigue intentando mejorar el resultado de sus predicciones.
 Las principales características del modelo son:
-- Entrenado con un dataset de coches de segunda mano con atributos como: marca, modelo, año, kilometraje, combustible, cambio, etc.
-- Se han ajustado hiperparámetros mediante `GridSearchCV` para mejorar el rendimiento.
+- Ha sido entrenado con un dataset de coches de segunda mano de 38 mil instancias, con atributos como: marca, modelo, año, kilometraje, combustible, cambio, etc.
+- Se han ajustado hiperparámetros mediante `RandomizedSearch` para mejorar el rendimiento.
 
-## Ejemplo de Uso
-Puedes hacer predicciones con el modelo guardado ejecutando:
+________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-```python
-from src.predict import load_model, predict_price
+# ML_Used-Cars
 
-model = load_model("models/random_forest.pkl")
-car_features = {
-    "year": 2018,
-    "mileage": 50000,
-    "fuel": "Gasoline",
-    "transmission": "Automatic",
-    "brand": "Toyota",
-    "model": "Corolla"
-}
+## Description
+Due to the current changes in the automotive market in Spain, this project aims to establish the price of used cars based on their characteristics and wear condition, providing a guide for estimating their cost.
 
-price = predict_price(model, car_features)
-print(f"Precio estimado: ${price:.2f}")
+The data has been obtained from DataMarket, containing listings from the main second-hand car sales websites. The data is primarily from the year 2023 and includes the following information:
+- color: Vehicle color.
+- currency: Currency in which the vehicle price is defined.
+- date: Date of data extraction.
+- dealer_address: Advertiser's address.
+- dealer_city: Advertiser's city.
+- dealer_country_code: Advertiser's country code.
+- dealer_description: Advertiser's description.
+- dealer_is_professional: Indicates whether the advertiser is a professional or not.
+- dealer_name: Vehicle seller. For private sellers (not dealerships), this information is encrypted in the dataset to comply with GDPR.
+- dealer_registered_at: Date the advertiser registered on the platform.
+- dealer_website: Advertiser's website.
+- dealer_zip_code: Advertiser's postal code.
+- description: Vehicle advertisement description.
+- doors: Number of vehicle doors.
+- fuel: Vehicle fuel type (diesel, gasoline, electric, hybrid).
+- is_professional: Indicates whether the seller is a professional (a dealership).
+- kms: Vehicle mileage.
+- location: City where the advertisement was published.
+- make: Vehicle brand.
+- model: Vehicle model.
+- photos: Number of vehicle photos available in the ad.
+- power: Vehicle power.
+- price: Vehicle selling price.
+- publish_date: Date the ad was published.
+- shift: Transmission type (Automatic/Manual).
+- update_date: Date the ad was updated.
+- vehicle_type: Type of vehicle: car, motorcycle, etc.
+- version: Vehicle version.
+- year: Vehicle manufacturing year.
+
+Part of the data can be accessed by requesting it from the [DataMarket](https://datamarket.es) website.
+
+## Project Structure
+```
+/
+|-- src/data_sample/                 # Contains raw and processed data
+|-- src/notebooks/                   # Jupyter Notebooks with analysis and training of different models
+|-- src/results_notebooks/        
+|   |-- results_notebook_ES.ipynb    # Script explaining the variable preparation process and training the final model (there is an English version)
+|-- src/models/                      # Saved trained models
+|-- src/utils/                       # Contains utility files (visualization functions, etc.)
+|-- src/img/                         # Contains images, presentations, etc.
+|-- requirements.txt                 # Libraries required for the project
+|-- README.md                        # Documentation
 ```
 
-## Contribuciones
-Si deseas contribuir, puedes abrir un **pull request** o reportar problemas en la sección de **issues**.
+## Installation
+To run the project, make sure you have Python (>=3.8) installed along with the following libraries:
 
-## Licencia
-Este proyecto está bajo la licencia MIT.
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your_user/your_repository.git
+cd your_repository
+git lfs install
+git lfs pull
+```
+
+2. Run the Jupyter Notebook for training:
+
+Open `results_notebook/results_notebook.ipynb` and execute it to see the modeling process.
+
+## Model
+A **RandomForestRegressor** model from `scikit-learn` has been implemented, as it provided the best results in tests, although improvements are still being explored to enhance prediction accuracy.
+
+The main characteristics of the model are:
+- It has been trained on a second-hand car dataset with 38,000 instances, including attributes such as brand, model, year, mileage, fuel type, transmission, etc.
+- Hyperparameters have been fine-tuned using `RandomizedSearch` to improve performance.
 
