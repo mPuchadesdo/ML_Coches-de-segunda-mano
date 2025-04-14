@@ -2,7 +2,7 @@ import pandas as pd
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-DATA_PATH = "../data_sample/vehiculos-de-segunda-mano-sample.csv"
+DATA_PATH = "https://drive.google.com/uc?id=1NtUt42nZ766HduQfyAxls1pX6deqtVh2"
 DATA_SAVES_PATH = "../data_sample/"
 MODEL_SAVE_PATH = "../models/car_price_model.joblib"
 
