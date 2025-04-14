@@ -14,8 +14,10 @@ decorator==5.2.1
 deep-translator==1.11.4
 exceptiongroup==1.2.2
 executing==2.2.0
+filelock==3.18.0
 fire==0.7.0
 fonttools==4.56.0
+gdown==5.2.0
 googletrans==3.1.0a0
 graphviz==0.20.3
 h11==0.9.0
@@ -55,6 +57,7 @@ psutil==7.0.0
 pure_eval==0.2.3
 Pygments==2.19.1
 pyparsing==3.2.1
+PySocks==1.7.1
 pytest==8.3.5
 pytest-cov==6.1.0
 python-dateutil==2.9.0.post0
